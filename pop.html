@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let arr = [1,2,3,4];
+        function deleteLate(){
+            let arr2 = new Array((arr.length-1));
+            for (let i = 0; i < arr.length-1; i++) {
+                arr2[i] = arr[i];
+            }
+            arr = arr2;
+        }
+        deleteLate();
+        document.write(arr)
+    </script>
+</body>
+</html>

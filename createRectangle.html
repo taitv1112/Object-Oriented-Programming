@@ -10,33 +10,40 @@
         function Rectangle(x,y){
             this.x = x;
             this.y = y ;
+        this.getPerimeter = function () {
+            return (x+y)*2;
         }
+        this.areaRectangle = function (){
+            return x * y;
+        }
+        }
+
         function getRandomHex(){
             return Math.floor(Math.random()*255);
         }
         function getRandomColor(){
-            var red = getRandomHex();
-            var green = getRandomHex();
-            var blue = getRandomHex();
+            let red = getRandomHex();
+            let green = getRandomHex();
+            let blue = getRandomHex();
             return "rgb(" + red + "," + blue + "," + green +")";
         }
+
         function createRectangle(){
             let canvas=document.getElementById("MyCanvas")
            let ctx = canvas.getContext("2d");
            let color = getRandomColor();
-           let x = Math.random() * window.innerWidth;
-           let y = Math.random() * window.innerHeight;
+            let x = +prompt("Nhập cạnh thứ nhất: ");
+            let y = +prompt("Nhập cạnh thứ hai: ");
            let rectangle = new Rectangle(x,y);
+           let perimeter = rectangle.getPerimeter();
+           let area = rectangle.areaRectangle();
+           document.write(rectangle+"<br>")
+           document.write(area+"<br>")
            ctx.fillStyle = color; // color of fill
-           ctx.fillRect(rectangle.x,rectangle.y,rectangle.x,rectangle.y);//create rectangle
+           ctx.fillRect(rectangle.x,rectangle.y,140,60);//create rectangle
         }
 
-        function MutilRectangle(){
-            for(let i=0 ;i<10;i++){
-                createRectangle();
-            }
-        }
-        MutilRectangle();
+        createRectangle();
 
     </script>
 </body>
