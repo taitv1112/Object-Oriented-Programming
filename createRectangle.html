@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xây dựng lớp mô tả hình chữ nhật</title>
+</head>
+<body>
+<canvas id="MyCanvas" width="1368" height="768" style="border: 1px solid #d3d3d3;"></canvas>
+    <script>
+        function Rectangle(x,y){
+            this.x = x;
+            this.y = y ;
+        }
+        function getRandomHex(){
+            return Math.floor(Math.random()*255);
+        }
+        function getRandomColor(){
+            var red = getRandomHex();
+            var green = getRandomHex();
+            var blue = getRandomHex();
+            return "rgb(" + red + "," + blue + "," + green +")";
+        }
+        function createRectangle(){
+            let canvas=document.getElementById("MyCanvas")
+           let ctx = canvas.getContext("2d");
+           let color = getRandomColor();
+           let x = Math.random() * window.innerWidth;
+           let y = Math.random() * window.innerHeight;
+           let rectangle = new Rectangle(x,y);
+           ctx.fillStyle = color; // color of fill
+           ctx.fillRect(rectangle.x,rectangle.y,rectangle.x,rectangle.y);//create rectangle
+        }
+
+        function MutilRectangle(){
+            for(let i=0 ;i<10;i++){
+                createRectangle();
+            }
+        }
+        MutilRectangle();
+
+    </script>
+</body>
+</html>
