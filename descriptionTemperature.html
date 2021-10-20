@@ -5,25 +5,26 @@
     <title>Xây dựng lớp mô tả Temperature</title>
 </head>
 <body>
+<input id="celsius" type="number">
+<input type="button" value="Click Me" onclick="display()">
     <script>
-        function decriptionTemperature(celsius){
-            this.celsius = celsius;
-
+        function display(){
+            celsius = new descriptionTemperature();
+            let fahrenheit = celsius.getFahrenheit();
+            let kelvin = celsius.getKelvin();
+            document.write("Độ F: " +fahrenheit +"<br>");
+            document.write("Độ K: " +kelvin+"<br>")
+        }
+        let celsius = +document.getElementById("celsius").value;
+        function descriptionTemperature(celsius){
             this.getFahrenheit = function (){
                 return 9*celsius/5 +32;
             }
-            this.getKenvin = function (){
+            this.getKelvin = function (){
                 return celsius + 273.15;
             }
         }
-        let celsius = +prompt("Nhập độ C: ")
-        document.write("Độ C: " +celsius +"<br>")
-            celsius = new decriptionTemperature(celsius);
-        let fahrenheit = celsius.getFahrenheit();
-        let Kenvin = celsius.getKenvin();
 
-        document.write("Độ F: " +fahrenheit +"<br>");
-        document.write("Độ K: " +Kenvin+"<br>")
     </script>
 </body>
 </html>
