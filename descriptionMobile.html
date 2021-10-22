@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Xây dựng lớp mô tả điện thoại</title>
+</head>
+<body>
+<div>
+    <label>Nokia (<span id="pin">100</span>)% : <span id="status">Bật</span></label><br>
+    <label for="soanthao">Soạn thảo tin nhắn :</label><br>
+    <textarea id="soanthao" onkeyup="nokia.settxtSoanThao(this.value)"></textarea><br>
+    <button onclick="SendMessage(nokia.getId())">Gửi</button>
+    <br>
+    <label for="thuden">Hộp thư đến</label><br>
+    <textarea id="thuden"readonly></textarea><br>
+    <br>
+    <label for="tindagui">Tin Đã Gửi</label><br>
+    <textarea id="tindagui"readonly></textarea><br>
+</div>
+<hr>
+<div>
+    <label>Iphone (<span id="pinIp">100</span>)%: <span id="statusIp">Bật</span></label><br>
+    <label for="soanthaoIp">Soạn thảo tin nhắn :</label><br>
+    <textarea id="soanthaoIp" onkeyup="iphone.settxtSoanThao(this.value)"></textarea><br>
+    <button onclick="SendMessage(iphone.getId())">Gửi</button><br>
+    <label for="thudenIp">Hộp thư đến</label><br>
+    <textarea id="thudenIp" readonly></textarea><br>
+    <br>
+    <label for="tindaguiIp">Tin Đã Gửi</label><br>
+    <textarea id="tindaguiIp" readonly></textarea><br>
+
+</div>
+<script>
+    class myMobile {
+        id;
+        name;
+        idxPin;
+        txtSoanThao;
+        txtHopThuDen;
+        txtTinNhanDaGui;
+        status;
+        idG;
+
+        constructor(id, name, idxPin, txtSoanThao, txtHopThuDen, txtTinNhanDaGui, status, idG) {
+            this.id = id;
+            this.name = name;
+            this.idxPin = idxPin;
+            this.txtSoanThao = txtSoanThao;
+            this.txtHopThuDen = txtHopThuDen;
+            this.txtTinNhanDaGui = txtTinNhanDaGui;
+            this.status = status;
+            this.idG = idG;
+        }
+
+        getId() {
+            return this.id;
+        }
+
+        getName() {
+            return this.name;
+        }
+
+        getidxPin() {
+            return this.idxPin;
+        }
+
+        gettxtSoanThao() {
+            return this.txtSoanThao;
+        }
+
+        gettxtHopThuDen() {
+            return this.txtHopThuDen;
+        }
+
+        gettxtTinNhanDaGui() {
+            return this.txtTinNhanDaGui;
+        }
+
+        getstatus() {
+            return this.status;
+        }
+
+        getidG() {
+            return this.idG;
+        }
+
+        setname(name) {
+            this.name = name;
+        }
+
+        setId(id) {
+            this.id = id;
+        }
+
+        setidxPin(idxPin) {
+            this.idxPin = idxPin;
+        }
+
+        settxtSoanThao(txtSoanThao) {
+            this.txtSoanThao = txtSoanThao;
+        }
+
+        settxtHopThuDen(txtHopThuDen) {
+            this.txtHopThuDen = txtHopThuDen;
+        }
+
+        settxtTinNhanDaGui(txtTinNhanDaGui) {
+            this.txtTinNhanDaGui = txtTinNhanDaGui;
+        }
+
+        setStatus(status) {
+            this.status = status;
+        }
+
+        setidG(idG) {
+            this.idG = idG;
+        }
+
+        checkPin(idxPin) {
+            if (idxPin < 0) {
+                this.status = false;
+            }
+        }
+
+    }
+
+    let nokia = new myMobile(1, "nokia", 100, "", "", "", true, 12);
+    let iphone = new myMobile(12, "iphone", 80, "", "", "", true, 1);
+    show();
+
+    function show() {
+        document.getElementById("soanthao").innerText = nokia.gettxtSoanThao();
+        document.getElementById("thuden").innerText = nokia.gettxtHopThuDen();
+        document.getElementById("tindagui").innerText = nokia.gettxtTinNhanDaGui();
+        document.getElementById("pin").innerText = nokia.getidxPin();
+        document.getElementById("soanthaoIp").innerText = iphone.gettxtSoanThao();
+        document.getElementById("thudenIp").innerText = iphone.gettxtHopThuDen();
+        document.getElementById("tindaguiIp").innerText = iphone.gettxtTinNhanDaGui();
+        document.getElementById("pinIp").innerText = iphone.getidxPin();
+        if (nokia.getstatus() == true && nokia.getidxPin() > 0) {
+            document.getElementById("status").innerText = "bật";
+        } else {
+            document.getElementById("status").innerText = "tắt";
+        }
+        if (iphone.getstatus() == true && iphone.getidxPin() > 0) {
+            document.getElementById("statusIp").innerText = "bật";
+        } else {
+            document.getElementById("statusIp").innerText = "tắt";
+        }
+    }
+
+    function SendMessage(id) {
+        if (nokia.getId() === id) {
+            if (nokia.getstatus() === false && nokia.getidxPin() > 0 || nokia.getidxPin() <= 0 || nokia.getstatus() === false) {
+                return alert("Vui lòng khởi động máy trước khi gửi !!")
+            }
+            nokia.setidxPin(nokia.getidxPin() - 1);
+            iphone.settxtHopThuDen(nokia.gettxtSoanThao());
+            nokia.settxtTinNhanDaGui(nokia.gettxtSoanThao());
+            nokia.settxtSoanThao("");
+            show();
+        }
+        if (iphone.getId() === id) {
+            iphone.setidxPin(iphone.getidxPin() - 1);
+            nokia.settxtHopThuDen(iphone.gettxtSoanThao());
+            iphone.settxtTinNhanDaGui(iphone.gettxtSoanThao());
+            iphone.settxtSoanThao("");
+            show();
+        }
+    }
+</script>
+</body>
+</html>
