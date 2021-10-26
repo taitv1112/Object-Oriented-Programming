@@ -78,19 +78,15 @@
     let apple = new MyApple(10);
     let adam = new MyHuman("Adam", true, 60);
     let eva = new MyHuman("Eva", false, 60);
-    for (let i = 0; i < 5; i++) {
-        if (apple.getWeight() > 0) {
+    while (apple.getWeight()>0) {
             adam.eat(apple);
             alert(apple.getWeight());
             adam.say("Anh ăn 1 miếng !!");
             eva.eat(apple);
             eva.say("Em ăn 1 miếng !!");
             alert(apple.getWeight());
-        } else {
-            alert("Hết táo rồi !!");
-        }
-
     }
+    alert("Hết táo rồi !!");
 
 </script>
 </body>
